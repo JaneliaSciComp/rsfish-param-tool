@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>31.1.0</version>
+	</parent>
+
+	<artifactId>rsfish-param-tool</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>sc.fiji</groupId>
+			<artifactId>bigdataviewer-vistools</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.janelia.saalfeldlab</groupId>
+			<artifactId>n5-imglib2</artifactId>
+		</dependency>
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>scijava.public</id>
+			<url>https://maven.scijava.org/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<name>RS-FISH Parameter Tool</name>
+	<description>BDV-based tool for determining RS-FISH parameters</description>
+	<url>none</url>
+	<inceptionYear>2021</inceptionYear>
+
+	<organization>
+		<name>Howard Hughes Medical Institute</name>
+		<url>https://www.hhmi.org</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>rokickik</id>
+			<name>Konrad Rokicki</name>
+			<email>rokickik@hhmi.org</email>
+		</developer>
+		<developer>
+			<id>tpietzsch</id>
+			<name>Tobias Pietzsch</name>
+			<email></email>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Janelia Open Source License 1.0</name>
+			<url>https://www.janelia.org/open-science/software-licensing</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<tag>main</tag>
+	</scm>
+
+	<properties>
+		<license.licenseName>bsd_2</license.licenseName>
+		<license.copyrightOwners>Tobias Pietzsch</license.copyrightOwners>
+
+		<!-- NB: Deploy releases to the SciJava Maven repository. -->
+		<releaseProfiles>deploy-to-scijava</releaseProfiles>
+	</properties>
+
+</project>
