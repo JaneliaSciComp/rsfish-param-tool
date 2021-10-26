@@ -1,15 +1,23 @@
+import anisotropy.parameters.AParams;
 import bdv.util.BdvFunctions;
 import bdv.util.BdvOptions;
 import bdv.util.BdvStackSource;
+import gui.Radial_Symmetry;
+import gui.anisotropy.AnisotropyCoefficient;
+import gui.interactive.HelperFunctions;
+import ij.ImageJ;
+import ij.ImagePlus;
 import net.imglib2.FinalInterval;
 import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
+import net.imglib2.img.display.imagej.ImageJFunctions;
 import net.imglib2.type.numeric.ARGBType;
 import net.imglib2.util.Intervals;
 import net.imglib2.view.IntervalView;
 import net.imglib2.view.Views;
 import org.janelia.saalfeldlab.n5.N5FSReader;
 import org.janelia.saalfeldlab.n5.imglib2.N5Utils;
+import parameters.RadialSymParams;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -34,8 +42,32 @@ public class ViewN5 {
 
         RandomAccessibleInterval stack = Views.stack(view, view2);
 
-        BdvStackSource<?> bdv = BdvFunctions.show(stack, "");
-        bdv.setDisplayRange(0, 1024);
+//        BdvStackSource<?> bdv = BdvFunctions.show(stack, "");
+//        bdv.setDisplayRange(0, 1024);
+
+        new ImageJ();
+        ImagePlus imp = ImageJFunctions.show(view);
+
+        float bestScale = 1.0f;
+        AParams ap = new AParams();
+        double [] minmax = HelperFunctions.calculateMinMax(imp);
+
+//        imp.setTitle( "" );
+        imp.setDimensions( 1, (int)img.dimension( 2 ), 1 );
+        imp.setDisplayRange( minmax[ 0 ], minmax[ 1 ] );
+
+
+        AnisotropyCoefficient ac = new AnisotropyCoefficient(imp, ap, RadialSymParams.defaultMode, minmax[0], minmax[1]);
+        if ( ac.wasCanceled() )
+            return;
+        bestScale = (float) ac.calculateAnisotropyCoefficient();
+
+        System.out.println("calculateAnisotropyCoefficient: "+bestScale);
+
+        new Radial_Symmetry().run( null );
+
+        //ImageJFunctions.wrap(view)
+
 
 //        BdvStackSource<?> bdv = BdvFunctions.show(img, "");
 //        bdv.setDisplayRange(0, 1024);

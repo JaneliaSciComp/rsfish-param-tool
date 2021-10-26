@@ -23,6 +23,22 @@
 			<artifactId>n5-imglib2</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>net.imglib2</groupId>
+			<artifactId>imglib2-ij</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.PreibischLab</groupId>
+			<artifactId>RS-FISH</artifactId>
+			<version>71d1612</version>
+		</dependency>
+
 		<!-- test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
